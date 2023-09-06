@@ -18,3 +18,15 @@ sed -i 's/2.openwrt.pool.ntp.org/time.ustc.edu.cn/g' package/base-files/files/bi
 sed -i 's/3.openwrt.pool.ntp.org/cn.pool.ntp.org/g' package/base-files/files/bin/config_generate
 # sed -i "/CYXluq4wUazHjmCDBCqXF/d" package/lean/default-settings/files/zzz-default-settings
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+
+# TTYD 自动登录
+sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
+
+# 修改主机名
+sed -i 's/OpenWrt/Newifi-D2/g' package/base-files/files/bin/config_generate
+
+# 修改默认wifi名称ssid为Newifi-D2
+#sed -i 's/ssid=OpenWrt/ssid=Newifi-D2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+
+# 开启wifi
+sed -i 's/disabled=1/disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
