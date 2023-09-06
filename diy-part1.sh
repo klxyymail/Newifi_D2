@@ -6,14 +6,14 @@
 # See /LICENSE for more information.
 #
 # https://github.com/P3TERX/Actions-OpenWrt
-# File name: diy-part2.sh
-# Description: OpenWrt DIY script part 2 (After Update feeds)
+# File name: diy-part1.sh
+# Description: OpenWrt DIY script part 1 (Before Update feeds)
 #
 
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
-sed -i 's/0.openwrt.pool.ntp.org/ntp.aliyun.com/g' package/base-files/files/bin/config_generate
-sed -i 's/1.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
-sed -i 's/2.openwrt.pool.ntp.org/time.ustc.edu.cn/g' package/base-files/files/bin/config_generate
-sed -i 's/3.openwrt.pool.ntp.org/cn.pool.ntp.org/g' package/base-files/files/bin/config_generate
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+# Uncomment a feed source
+#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+
+# Add a feed source
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
