@@ -25,8 +25,8 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 # 修改主机名
 sed -i 's/OpenWrt/Newifi-D2/g' package/base-files/files/bin/config_generate
 
-# 修改默认wifi名称ssid为Newifi-D2
-sed -i 's/ssid=OpenWrt/ssid=Newifi-D2/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# 修改默认wifi名称ssid为Newifi-D2-默认SSID为Openwrt_MAC后六位
+sed -i 's/ssid=OpenWrt/ssid=Newifi-D2-$(cat /sys/class/ieee80211/${dev}/macaddress|awk -F ":" '{print $4""$5""$6 }'| tr a-z A-Z)/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
 
 # 开启wifi
 sed -i 's/disabled=1/disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
